@@ -1,94 +1,120 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Credential Manager</title>
 
-     <link href="css/bootstrap.min.css" rel="stylesheet">
-	 <link href="css/index.css" rel="stylesheet">
-    <script>
-		function openForm() {
-			document.getElementById("popupForm").style.display = "block";
-		}
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Credential Manager</title>
 
-		function closeForm() {
-			document.getElementById("popupForm").style.display = "none";
-		}
-		function deleteRow(r) {
-			var i = r.parentNode.parentNode.rowIndex;
-			var x = document.getElementById("creddisplay").rows[i].cells;
-			document.getElementById("hiddenid").value = x[0].innerHTML;
-			 
-			App.deleteEntry();
-		}
-		
-	</script>
-  </head>
-  <body>
-    <div class="container" style="width: 650px;">
-      <div class="row">
-        <div class="col-lg-12">
-          <h1 class="text-center">Credentials</h1>
-          <hr/>
-          <br/>
-          <div id="loader">
-            <p class="text-center">Fetching the previously saved entries</p>
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/index.css" rel="stylesheet">
+  <script>
+    function openForm() {
+      document.getElementById("popupForm").style.display = "block";
+    }
+
+    function closeForm() {
+      document.getElementById("popupForm").style.display = "none";
+    }
+    function deleteRow(r) {
+      var i = r.parentNode.parentNode.rowIndex;
+      var x = document.getElementById("creddisplay").rows[i].cells;
+      document.getElementById("hiddenid").value = x[0].innerHTML;
+
+      App.deleteEntry();
+    }
+    // Change the type of input to password or text
+    function Toggle() {
+      var temp = document.getElementById("passwordentry");
+      if (temp.type === "password") {
+        temp.type = "text";
+      }
+      else {
+        temp.type = "password";
+      }
+    }
+  </script>
+</head>
+
+<body>
+  <div class="container" style="width: 55%;">
+    <div class="row">
+      <div class="col-lg-12">
+        <h1 class="text-center">Credentials</h1>
+        <hr />
+        <br />
+        <div id="loader">
+          <p class="text-center">Fetching the previously saved entries</p>
+        </div>
+        <div id="content" class="table-responsive">
+          <table class="styled-table tableFixHead" id="creddisplay">
+            <thead>
+              <tr>
+                <th scope="col" style="display:none;">ID</th>
+                <th scope="col">#</th>
+                <th scope="col">Website</th>
+                <th scope="col">Username</th>
+                <th scope="col">Password</th>
+                <th scope="col">Address</th>
+                <th scope="col">Delete</th>
+              </tr>
+            </thead>
+            <tbody id="credentries">
+            </tbody>
+          </table>
+          <hr />
+        </div>
+        <div>
+          <div class="openBtn" align="center">
+            <button class="openButton" onclick="openForm()"><strong>Add New Entry</strong></button>
           </div>
-          <div id="content" style="display: none;">
-            <table class="styled-table" id="creddisplay" >
-              <thead>
-                <tr>
-                  <th scope="col" style="display:none;">ID</th>
-                  <th scope="col">#</th>
-                  <th scope="col">Website</th>
-                  <th scope="col">Username</th>
-                  <th scope="col">Password</th>
-				  <th scope="col">Address</th>
-				  <th scope="col">Delete</th>
-                </tr>
-              </thead>
-              <tbody id="credentries">
-              </tbody>
-            </table>
-            <hr/>
-			<div class="openBtn" align="center"  >
-				<button class="openButton" onclick="openForm()"><strong>Add New Entry</strong></button>
-			</div>
-			<br>
-			<div class="formPopup" id="popupForm" align="center" style="background-color: white; height:400px; width:600px">
-			<p><p>
-				<form onSubmit="App.addNewEntry(); return true;">
-				  <div class="form-group" >
-				  <table  class="styled-table"  >
-				  <tr><td><label for="addwesbite">Website</label>
-					</td><td><input type="text" id="websiteentry" name="websiteentry" > </td></tr>
-					<tr><td><label for="addusername">Username</label>
-					</td><td><input type="text" id="usernameentry" name="usernameentry"> </td></tr>
-					<tr><td><label for="addpassword">Password</label>
-					</td><td><input type="text" id="passwordentry" name="passwordentry"> </td></tr>
-					</table>
-				  </div>
-				  <button type="submit" class="btn btn-primary">Add</button>
-				  <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
-				  <hr />
-				</form>
-			</div>
-			<footer align="center">
+          <br>
+          <div class="formPopup" id="popupForm" align="center"
+            style="background-color: white; height:400px; width:600px">
+            <h2>Please enter your details here...</h2>
+            <form onSubmit="App.addNewEntry(); return true;">
+              <div class="form-group" style="margin-bottom: 10%;margin-top: 10%;">
+                <table class="styled-table">
+                  <tr>
+                    <td><label for="addwesbite">Website</label>
+                    </td>
+                    <td><input type="text" id="websiteentry" name="websiteentry" placeholder="website URL"> </td>
+                  </tr>
+                  <tr>
+                    <td><label for="addusername">Username</label>
+                    </td>
+                    <td><input type="text" id="usernameentry" name="usernameentry" placeholder="username"> </td>
+                  </tr>
+                  <tr>
+                    <td><label for="addpassword">Password</label>
+                    </td>
+                    <td><input type="password" id="passwordentry" name="passwordentry" placeholder="secure password">
+                      <input type="checkbox" onclick="Toggle()">
+                      <b>Show Password</b>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+              <button type="submit" class="btn btn-primary">Add</button>
+              <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+            </form>
+          </div>
+          <footer align="center">
             <p id="accountAddress"></p>
-			</footer>
-			<input type="hidden" id="hiddenid" name="hiddenid" />
-			 
-		  </div>
+          </footer>
+          <input type="hidden" id="hiddenid" name="hiddenid" />
+
         </div>
       </div>
     </div>
+  </div>
 
-     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-     <script src="js/bootstrap.min.js"></script>
-    <script src="js/web3.min.js"></script>
-    <script src="js/truffle-contract.js"></script>
-    <script src="js/app.js"></script>
-  </body>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/web3.min.js"></script>
+  <script src="js/truffle-contract.js"></script>
+  <script src="js/app.js"></script>
+</body>
+
 </html>
