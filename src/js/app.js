@@ -85,10 +85,9 @@ App = {
 		  
 		  console.log("IDs : "+id);
 		  console.log("address : "+address);
-		  
 		 if(App.account == address)
 		 {			 
-          var credTemplate = "<tr><th style=\"display:none;\" >" + id + "</th><th>" + k + "</th><td>" + website + "</td><td>" + username + "</td><td class=\"hidetext\">" + password + "</td><td>" + address + "</td><td><input type=\"button\" class=\"btn btn-primary\" value=\"Delete\" onclick=\"deleteRow(this)\"></td></tr>"
+          var credTemplate = "<tr><th style=\"display:none;\" >" + id + "</th><th>" + k + "</th><td>" + website + "</td><td>" + username + "</td><td class=\"hidetext\" id=\"password\">" + password + "</td><td>" + address + "</td><td><input type=\"button\" class=\"btn btn-primary\" value=\"Delete\" onclick=\"deleteRow(this)\"></td></tr>"
           credResults.append(credTemplate);
 		  k++;
 		 }		  

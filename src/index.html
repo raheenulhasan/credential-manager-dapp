@@ -34,6 +34,21 @@
         temp.type = "password";
       }
     }
+
+    // Change the type of all passwords fields to text
+    function ToggleTablePasswords() {
+      //var temp = document.getElementById("password");
+      var temp = document.querySelectorAll("[id='password']");
+      for (var i = 0; i < temp.length; i++){
+        if (temp[i].classList.value === "hidetext") {
+          temp[i].classList.remove("hidetext");
+        }
+        else {
+          temp[i].classList.add("hidetext");
+        }
+      }
+        //elms[i].style.display = 'none'; // <-- whatever you need to do here.
+    }
   </script>
 </head>
 
@@ -46,6 +61,9 @@
         <br />
         <div id="loader">
           <p class="text-center">Fetching the previously saved entries</p>
+        </div>
+        <div><input type="checkbox" onclick="ToggleTablePasswords()">
+          <b>Show Password/s</b>
         </div>
         <div id="content" class="table-responsive">
           <table class="styled-table tableFixHead" id="creddisplay">
@@ -71,9 +89,9 @@
           </div>
           <br>
           <div class="formPopup" id="popupForm" align="center"
-            style="background-color: white; height:400px; width:600px">
-            <h2>Please enter your details here...</h2>
+            style="background-color: white; height:400px; width:36%;">
             <form onSubmit="App.addNewEntry(); return true;">
+              <h2 class="addNewHeader">Please enter your details here...</h2>
               <div class="form-group" style="margin-bottom: 10%;margin-top: 10%;">
                 <table class="styled-table">
                   <tr>

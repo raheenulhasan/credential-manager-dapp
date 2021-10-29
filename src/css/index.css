@@ -102,9 +102,11 @@
   color: #009879;
 }
 .table-responsive {
-  max-height: 450px;
+  max-height: 350px;
   width: fit-content;
 }
-.tableFixHead          { overflow-y: auto; height: 100px; }
+.tableFixHead          { overflow-y: auto; height: 100px; width: 668px;}
 .tableFixHead thead { position: sticky; top: 0; }
 .hidetext { -webkit-text-security: disc; /* Default */ }
+.showtext { -webkit-text-security: none;}
+.addNewHeader {background-color: #009879; color: #ffffff;}
