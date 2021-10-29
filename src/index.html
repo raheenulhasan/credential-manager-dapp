@@ -39,7 +39,7 @@
     function ToggleTablePasswords() {
       //var temp = document.getElementById("password");
       var temp = document.querySelectorAll("[id='password']");
-      for (var i = 0; i < temp.length; i++){
+      for (var i = 0; i < temp.length; i++) {
         if (temp[i].classList.value === "hidetext") {
           temp[i].classList.remove("hidetext");
         }
@@ -47,7 +47,31 @@
           temp[i].classList.add("hidetext");
         }
       }
-        //elms[i].style.display = 'none'; // <-- whatever you need to do here.
+      //elms[i].style.display = 'none'; // <-- whatever you need to do here.
+    }
+
+    function filter() {
+      // Declare variables
+      var input, filter, table, tr, td, i, txtValue;
+      input = document.getElementById("filterInput");
+      filter = input.value.toUpperCase();
+      table = document.getElementById("creddisplay");
+      tr = table.getElementsByTagName("tr");
+
+      // Loop through all table rows, and hide those who don't match the search query
+      for (i = 1; i < tr.length; i++) {
+        website = tr[i].getElementsByTagName("td")[0];
+        username = tr[i].getElementsByTagName("td")[1];
+        password = tr[i].getElementsByTagName("td")[2];
+        if (website || username || password) {
+          txtValue = website.textContent + " " + website.innerText + " " + username.textContent + " " + username.innerText + " " + password.textContent + " " + password.innerText;
+          if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            tr[i].style.display = "";
+          } else {
+            tr[i].style.display = "none";
+          }
+        }
+      }
     }
   </script>
 </head>
@@ -56,15 +80,21 @@
   <div class="container" style="width: 55%;">
     <div class="row">
       <div class="col-lg-12">
-        <h1 class="text-center">Credentials</h1>
+        <h1 class="text-center">Credentials Manager DAPP</h1>
         <hr />
         <br />
         <div id="loader">
           <p class="text-center">Fetching the previously saved entries</p>
         </div>
-        <div><input type="checkbox" onclick="ToggleTablePasswords()">
-          <b>Show Password/s</b>
+        <div class="flex-container">
+          <input style="width: 35rem;" type="text" id="filterInput" onkeyup="filter()"
+            placeholder="Search for website/username/password..">
+          <div>
+            <input type="checkbox" onclick="ToggleTablePasswords()">
+            <b>Show Password(s)</b>
+          </div>
         </div>
+        <br>
         <div id="content" class="table-responsive">
           <table class="styled-table tableFixHead" id="creddisplay">
             <thead>
@@ -85,7 +115,7 @@
         </div>
         <div>
           <div class="openBtn" align="center">
-            <button class="openButton" onclick="openForm()"><strong>Add New Entry</strong></button>
+            <button class="button" onclick="openForm()"><strong>Add New Entry</strong></button>
           </div>
           <br>
           <div class="formPopup" id="popupForm" align="center"

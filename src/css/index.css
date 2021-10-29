@@ -15,6 +15,20 @@
   cursor: pointer;
   position: relative;
 }
+/* .button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.7s;
+}
+.button span:after {
+   content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.7s;
+} */
 .loginPopup {
   position: relative;
   text-align: center;
@@ -110,3 +124,42 @@
 .hidetext { -webkit-text-security: disc; /* Default */ }
 .showtext { -webkit-text-security: none;}
 .addNewHeader {background-color: #009879; color: #ffffff;}
+.flex-container {
+  display: flex;
+  justify-content: space-between;
+}
+.button {
+  background-color: purple;
+  border: none;
+  color: #FFFFFF;
+  padding: 15px 32px!important;
+  text-align: center;
+  -webkit-transition-duration: 0.4s;
+  transition-duration: 0.4s;
+  text-decoration: none;
+  font-size: 16px;
+  cursor: pointer;
+  width: 250px;
+}
+
+.button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.7s;
+}
+.button span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -25px;
+  transition: 0.7s;
+}
+.button:hover span {
+  padding-right: 30px;
+}
+.button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
