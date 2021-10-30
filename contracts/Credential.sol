@@ -19,8 +19,8 @@ contract Credential {
     );
 
     function Credential () public {
-        addEntry(0x640a0990dd1B28142D3D20A96794BC43F2e2FD33,"Website 1", "Username 1", "Password 1");
-        addEntry(0x640a0990dd1B28142D3D20A96794BC43F2e2FD33,"Website 2", "Username 2", "Password 2");
+        //addEntry(0x640a0990dd1B28142D3D20A96794BC43F2e2FD33,"Website 1", "Username 1", "Password 1");
+        //addEntry(0x640a0990dd1B28142D3D20A96794BC43F2e2FD33,"Website 2", "Username 2", "Password 2");
     }
 
     function addEntry (address _address, string _website,string _username,string _password) public {
